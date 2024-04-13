@@ -21,9 +21,9 @@ export const cleanAndTransformBlocks = (blocksJSON) => {
                 delete block[deleteKey];
             });
             if (block.originalContent) {
-                //remove html heading tags from originalContent to prevent repeat in code
+                //remove html p tags from originalContent to prevent repeat in code
                 const inputString = block.originalContent
-                const regex = /<([^<>]+)>/g;
+                const regex = /<\/?(p|h[1-6])([^>]*)>/g;
                 block.originalContent = inputString.replace(regex, '');
                 
             }  if (block.innerBlocks?.length) {
