@@ -26,7 +26,8 @@ export const cleanAndTransformBlocks = (blocksJSON) => {
                 const regex = /<\/?(p|h[1-6])([^>]*)>/g;
                 block.originalContent = inputString.replace(regex, '');
                 
-            }  if (block.innerBlocks?.length) {
+            } 
+             if (block.innerBlocks?.length) {
                 removeUnusedDataAndAssignId(block.innerBlocks);
                 
             } 

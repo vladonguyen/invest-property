@@ -9,14 +9,24 @@ const uri = context.params?.slug ? `/${context.params.slug.join("/")}` : "/";
 
 const {data} = await client.query({
     query: gql`
+
+    
     query PageQuery($uri: String!) {
       nodeByUri(uri: $uri) {
         ... on Page {
           id
           title
           blocksJSON
+          
         }
-      }
+
+        ... on Property {
+          id
+          title
+          blocksJSON
+          
+        }
+      }    
 
       acfOptionsMainMenu {
         mainMenu {
@@ -46,8 +56,11 @@ const {data} = await client.query({
               label
             }
           }
+          
         }
       }
+
+      
     }
     `,
     variables: {

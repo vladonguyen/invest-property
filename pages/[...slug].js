@@ -16,12 +16,17 @@ const {data} = await client.query({
             uri
           }
         }
+        properties {
+          nodes {
+            uri
+          }
+        }
       }
       `,
 });
 
 return {
-    paths: data.pages.nodes.map((page) => ({
+    paths: [...data.pages.nodes, ...data.properties.nodes].map((page) => ({
         params: {
             slug: page.uri.substring(1, page.uri.length-1).split("/"),
         }
