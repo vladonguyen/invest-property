@@ -2,6 +2,7 @@ import { CallToActionButton } from "components/CallToActionButton";
 import { Column } from "components/Column";
 import { Columns } from "components/Columns";
 import { Cover } from "components/Cover/Cover";
+import { FormspreeForm } from "components/FormspreeForm";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { PropertySearch } from "components/PropertySearch";
@@ -20,6 +21,12 @@ export const BlockRenderer = ({ blocks = [] }) => {
                         align={block.attributes.data.align}
                     />
                 );
+            }
+            case "acf/formspreeform": {
+                return <FormspreeForm 
+                key={block.id} 
+                formId={block.attributes.data.form_id} 
+                />
             }
             case "core/paragraph": {
                 return <Paragraph
