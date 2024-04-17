@@ -6,12 +6,23 @@ import { FormspreeForm } from "components/FormspreeForm";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { PropertySearch } from "components/PropertySearch";
+import { PropertyFeatures } from "components/ProperyFeatures";
 import Image from "next/legacy/image";
 import { theme } from "theme";
 
 export const BlockRenderer = ({ blocks = [] }) => {
     return blocks.map((block) => {
         switch (block.name) {
+            case "acf/propertyfeatures": {
+                return  <PropertyFeatures
+                key={block.id}
+                price={block.attributes.price}
+                bathrooms={block.attributes.bathrooms}
+                bedrooms={block.attributes.bedrooms}
+                hasParking={block.attributes.has_parking}
+                petFriendly={block.attributes.pet_friendly}
+              />
+            }
             case "acf/ctabutton": {
                 return (
                     <CallToActionButton
