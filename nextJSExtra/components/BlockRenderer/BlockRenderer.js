@@ -6,21 +6,21 @@ import { FormspreeForm } from "components/FormspreeForm";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { PropertySearch } from "components/PropertySearch";
-import { PropertyFeatures } from "components/ProperyFeatures";
+import { PropertyFeatures } from "components/PropertyFeatures";
 import Image from "next/legacy/image";
 import { theme } from "theme";
 
-export const BlockRenderer = ({ blocks = [] }) => {
+export const BlockRenderer = ({ blocks = [], propertyFeaturesProps ={} }) => {
     return blocks.map((block) => {
         switch (block.name) {
             case "acf/propertyfeatures": {
                 return  <PropertyFeatures
                 key={block.id}
-                price={block.attributes.price}
-                bathrooms={block.attributes.bathrooms}
-                bedrooms={block.attributes.bedrooms}
-                hasParking={block.attributes.has_parking}
-                petFriendly={block.attributes.pet_friendly}
+                price={propertyFeaturesProps.price}
+                bathrooms={propertyFeaturesProps.bathrooms}
+                bedrooms={propertyFeaturesProps.bedrooms}
+                hasParking={propertyFeaturesProps.has_parking}
+                petFriendly={propertyFeaturesProps.pet_friendly}
               />
             }
             case "acf/ctabutton": {
@@ -63,7 +63,7 @@ export const BlockRenderer = ({ blocks = [] }) => {
             }
             case 'core/cover': {
                 return (<Cover key={block.id} background={block.attributes.url}>
-                    <BlockRenderer blocks={block.innerBlocks} />
+                    <BlockRenderer blocks={block.innerBlocks} propertyFeaturesProps = {propertyFeaturesProps} />
                 </Cover>
                 );
             }
@@ -73,7 +73,7 @@ export const BlockRenderer = ({ blocks = [] }) => {
                         key={block.id}
                         isStackedOnMobile={block.attributes.isStackedOnMobile}
                     >
-                        <BlockRenderer blocks={block.innerBlocks} />
+                        <BlockRenderer blocks={block.innerBlocks} propertyFeaturesProps = {propertyFeaturesProps} />
                     </Columns>
 
                 )
@@ -85,7 +85,7 @@ export const BlockRenderer = ({ blocks = [] }) => {
                         key={block.id}
                         width={block.attributes.width}
                     >
-                        <BlockRenderer blocks={block.innerBlocks} />
+                        <BlockRenderer blocks={block.innerBlocks} propertyFeaturesProps = {propertyFeaturesProps} />
                     </Column>
 
                 )
@@ -93,7 +93,7 @@ export const BlockRenderer = ({ blocks = [] }) => {
             case "core/group":
             case "core/block": {
                 return (
-                    <BlockRenderer key={block.id} blocks={block.innerBlocks} />
+                    <BlockRenderer key={block.id} blocks={block.innerBlocks} propertyFeaturesProps = {propertyFeaturesProps} />
 
                 )
             };

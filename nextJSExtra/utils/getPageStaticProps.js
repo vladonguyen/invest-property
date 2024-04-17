@@ -9,8 +9,6 @@ const uri = context.params?.slug ? `/${context.params.slug.join("/")}` : "/";
 
 const {data} = await client.query({
     query: gql`
-
-    
     query PageQuery($uri: String!) {
       nodeByUri(uri: $uri) {
         ... on Page {
@@ -24,9 +22,21 @@ const {data} = await client.query({
           id
           title
           blocksJSON
-          
+
+          propertyFeatures {
+            bathrooms
+            bedrooms
+            hasParking
+            petFriendly
+            price
+          }
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
         }
-      }    
+      }
 
       acfOptionsMainMenu {
         mainMenu {
@@ -74,6 +84,10 @@ const {data} = await client.query({
       callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
       callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
       blocks,
+      // seo: data.nodeByUri.seo,
+      title: data.nodeByUri.title,
+      propertyFeatures: data.nodeByUri.propertyFeatures || null,
+      featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
     },
   };
 };

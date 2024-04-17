@@ -1,16 +1,16 @@
-import { gql } from "@apollo/client"
-import client from "client"
-import { getPageStaticProps } from "utils/getPageStaticProps"
-
-import {Page} from "components/Page";
+import { gql } from "@apollo/client";
+import client from "client";
+import { getPageStaticProps } from "utils/getPageStaticProps";
+import { Page } from "components/Page";
 
 export default Page;
+
 export const getStaticProps = getPageStaticProps;
 
-export const getStaticPaths = async() => {
-const {data} = await client.query({
+export const getStaticPaths = async () => {
+  const { data } = await client.query({
     query: gql`
-    query AllPagesQuery {
+      query AllPagesQuery {
         pages {
           nodes {
             uri
@@ -19,20 +19,29 @@ const {data} = await client.query({
         properties {
           nodes {
             uri
+            propertyFeatures {
+              bathrooms
+              bedrooms
+              hasParking
+              petFriendly
+              price
+            }
           }
         }
+        
       }
-      `,
-});
-
-return {
-    paths: [...data.pages.nodes, ...data.properties.nodes].map((page) => ({
+    `,
+  });
+ 
+  return {
+    
+    paths: [...data.pages.nodes, ...data.properties.nodes]
+      .filter((page) => page.uri !== "/")
+      .map((page) => ({
         params: {
-            slug: page.uri.substring(1, page.uri.length-1).split("/"),
-        }
-    })),
-    fallback: false,
+          slug: page.uri.substring(1, page.uri.length - 1).split("/"),
+        },
+      })),
+    fallback: "blocking",
+  };
 };
-};
-
-//getStaticPaths is a special function, component within next js - returns array of roots to make available within next js
