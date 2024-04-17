@@ -6,7 +6,7 @@ import { FormspreeForm } from "components/FormspreeForm";
 import { Heading } from "components/Heading";
 import { Paragraph } from "components/Paragraph";
 import { PropertySearch } from "components/PropertySearch";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { theme } from "theme";
 
 export const BlockRenderer = ({ blocks = [] }) => {
