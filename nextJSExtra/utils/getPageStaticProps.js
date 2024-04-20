@@ -15,13 +15,26 @@ const {data} = await client.query({
           id
           title
           blocksJSON
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          seo {
+            title
+            metaDesc
+          }
           
         }
-
+        
         ... on Property {
           id
           title
           blocksJSON
+          seo {
+            title
+            metaDesc
+          }
 
           propertyFeatures {
             bathrooms
@@ -80,6 +93,7 @@ const {data} = await client.query({
   const blocks = cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
   return {
     props: {
+      seo: data.nodeByUri.seo,
       mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems) ,
       callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
       callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
