@@ -10,10 +10,18 @@ import { PropertyFeatures } from "components/PropertyFeatures";
 import Image from "next/legacy/image";
 import { theme } from "theme";
 import { Gallery } from "components/Gallery";
+import {TickItem} from "components/TickItem";
 
 export const BlockRenderer = ({ blocks = [], propertyFeaturesProps = {} }) => {
     return blocks.map((block) => {
         switch (block.name) {
+            case "acf/tickitem": {
+                return (
+                    <TickItem key={block.id} >
+                        <BlockRenderer blocks={block.innerBlocks} />
+                    </TickItem>
+                );
+            }
             case "core/gallery": {
                 return <Gallery
 
