@@ -22,11 +22,16 @@ export const Gallery = ({columns, cropImages, items}) => {
             >
                 <Image 
                 src={item.attributes.url} 
-                //TODO fix width and heigth graphql props
+                //CHANGED fixed width and heigth graphql props
+                //old code here
                 // height={maxHeight || item.attributes.height}
                 // width={maxWidth || item.attributes.width} 
-                height={100}
-                width={100} 
+                // height={100}
+                // width={100} 
+                height={0}
+                width={0}
+                sizes="100vw"
+                style={{ width: '100%', height: 'auto' }} // optional
                 alt={item.attributes.alt} 
                 objectFit="cover"
                  />
