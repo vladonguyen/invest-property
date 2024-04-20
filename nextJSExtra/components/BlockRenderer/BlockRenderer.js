@@ -108,6 +108,11 @@ export const BlockRenderer = ({ blocks = [], propertyFeaturesProps = {} }) => {
                     <Column
                         key={block.id}
                         width={block.attributes.width}
+                        textColor={
+                            theme[block.attributes.textColor] ||
+                            block.attributes.style?.color?.text}
+                        backgroundColor={theme[block.attributes.backgroundColor] ||
+                            block.attributes.style?.background}
                     >
                         <BlockRenderer blocks={block.innerBlocks} propertyFeaturesProps={propertyFeaturesProps} />
                     </Column>
