@@ -6,7 +6,7 @@ return (
 <p 
 
 className={` ${getTextAlign(textAlign)}`}
-style={{color: textColor}}
+style={{color: textColor, padding: 10}}
 dangerouslySetInnerHTML={{__html: relativeToAbsoluteUrl(content) }}
 />
 );

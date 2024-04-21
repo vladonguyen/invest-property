@@ -132,11 +132,12 @@ export const BlockRenderer = ({ blocks = [], propertyFeaturesProps = {} }) => {
                     <Image
                         key={block.id}
                         src={block.attributes.url}
-                        height={0}
-                        width={0}
-                        sizes="100vw"
+                        width={9000}
+                        height={6000}
+                        // sizes="100vw"
+                        // style={{ width: '100%', height: 'auto' }} // optional
                         alt={block.attributes.alt || ""}
-                        style={{ width: '100%', height: 'auto' }} // optional
+                        style={{objectFit: "cover"}}
                     />
 
                 )
