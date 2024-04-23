@@ -1,8 +1,11 @@
 import { BlockRenderer } from "components/BlockRenderer";
-import { getPage } from "utils/getPage"
+import { getPage } from "utils/getPage";
+import { notFound } from "next/navigation";
 
 export default async function Home(){
     const data = await getPage("/");
-    console.log({data});
+if(!data){
+notFound();
+}
     return <BlockRenderer blocks={data} />
 }
