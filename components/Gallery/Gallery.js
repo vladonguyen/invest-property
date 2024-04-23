@@ -31,8 +31,8 @@ export const Gallery = ({columns, cropImages, items}) => {
                 height={0}
                 width={0}
                 sizes="100vw"
-                style={{ width: '100%', height: 'auto', objectFit:'cover' }} // optional
-                alt={item.attributes.alt} 
+                style={{ width: '100%', height: 'auto' }} // optional
+                alt={item.attributes.alt || ""} 
                 // objectFit="cover"
                  />
             </div>
