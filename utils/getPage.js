@@ -11,7 +11,15 @@ export const getPage = async (uri) => {
             }
             ... on Property {
               blocksJSON
+              propertyFeatures {
+                bathrooms
+                bedrooms
+                hasParking
+                petFriendly
+                price
+              }
             }
+            
           }
           }
         `,
@@ -34,6 +42,12 @@ export const getPage = async (uri) => {
     }
     const blocks = cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
 
-    return blocks;
+    return {
+      props: {
+               blocks,
+        propertyFeatures: data.nodeByUri.propertyFeatures || null,
+     
+      },
+    };
 
 }

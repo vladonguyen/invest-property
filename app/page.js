@@ -8,7 +8,7 @@ export default async function Home(){
 if(!data){
 notFound();
 }
-    return <BlockRenderer blocks={data} />
+    return <BlockRenderer blocks={data.props.blocks}/>
 }
 
 export async function generateMetadata (){

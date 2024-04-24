@@ -9,7 +9,8 @@ export default async function Page({params}){
     if(!data){
     notFound();
     }
-    return <BlockRenderer blocks={data} />
+    // console.log("DATA!: ", data)
+    return <BlockRenderer blocks={data.props.blocks} propertyFeaturesProps={data.props.propertyFeatures}/>
 }
 
 export async function generateMetadata ({params}){
