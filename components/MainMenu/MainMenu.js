@@ -17,10 +17,8 @@ export const MainMenu = ({ items, callToActionLabel, callToActionDestination }) 
                         className='hover:bg-slate-700 cursor-pointer relative group'
                     >
                         <div>
-                            <Link legacyBehavior href={item.destination}>
-                                <a className='p-5 block'>
+                            <Link  href={item.destination} className='p-5 block'>
                                     {item.label}
-                                </a>
                             </Link>
                         </div>
                         {!!item.subMenuItems?.length && (
@@ -28,10 +26,8 @@ export const MainMenu = ({ items, callToActionLabel, callToActionDestination }) 
                                 className='group-hover:block hidden bg-slate-800 text-right absolute right-0 top-full -mt-3'
                             >
                                 {item.subMenuItems.map((subMenuItem) => (
-                                    <Link legacyBehavior key={subMenuItem.id} href={subMenuItem.destination}>
-                                        <a className='block whitespace-nowrap p-5 hover:bg-slate-700'>
+                                    <Link  key={subMenuItem.id} href={subMenuItem.destination} className='block whitespace-nowrap p-5 hover:bg-slate-700'>
                                             {subMenuItem.label}
-                                        </a>
                                     </Link>
                                 ))}
                             </div>

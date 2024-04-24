@@ -137,7 +137,7 @@ export const BlockRenderer = ({ blocks = [], propertyFeaturesProps = {} }) => {
                         // sizes="100vw"
                         // style={{ width: '100%', height: 'auto' }} // optional
                         alt={block.attributes.alt || ""}
-                        style={{objectFit: "cover"}}
+                        // style={{objectFit: "cover"}}
                     />
 
                 )

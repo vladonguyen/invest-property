@@ -1,3 +1,4 @@
+"use client";
 import { useForm, ValidationError } from "@formspree/react";
 import { Input } from "components/Input";
 
@@ -8,7 +9,7 @@ export const FormspreeForm = ({ formId }) => {
   }
   return (
     <form onSubmit={handleSubmit} className="max-w-5xl mx-auto min-w-max border border-slate-700 p-10">
-<label for="email" class="block font-bold">Email Address</label>
+<label for="email" className="block font-bold">Email Address</label>
       <Input id="email" type="email" name="email" />
       <ValidationError prefix="Email" field="email" errors={state.errors} />
       
